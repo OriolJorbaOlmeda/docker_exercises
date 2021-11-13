@@ -1,0 +1,1 @@
+Los apartados que necesitan el apoyo de otros documentos, los he puesto en cada carpeta con su nombre. Dentro también se encuentra el fichero de expicación de cada apartado.

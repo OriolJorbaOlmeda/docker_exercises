@@ -1,0 +1,9 @@
+El primer paso es dirigirse a Docker Hub y encontrar esa versión de NGINX, si es posible con alpine. Al encontrar esta imagen nos indica que se puede adquirir con el siguiente código: docker pull nginx:1.19.3-alpine. Una vez bajada, escribiendo docker images se puede ver cuánto ocupa, el ID y el tag de la imagen. En segundo lugar creamos un Dockerfile en el mismo directorio donde nos encontramos con el siguiente código: (ver imagen_1.png)
+Lo que haremos será crear una imagen de Nginx con la versión deseada y copiaremos la carpeta html (la cual se tiene que crear antes de construir la imagen, con un fichero index.html dentro y el código necesario para que aparezca HOMEWORK 1 por pantalla). A continuación, nos dirijimos al terminal para en primer lugar, construir el volumen con el nombre static_content, con el cual persistiremos el fichero index.html. Lo creamos con Docker volumen create static_content, y con docker volume ls podemos ver todos los volúmenes listados: (ver imagen_2.png)
+A continuación, solo queda construir la imagen a partir del Dockerfile y construir el contenedor que nos permitirá ver por pantalla el mensaje deseado.
+Para construir la imagen , es necesario utilizar el comando docker build de la siguiente forma: (ver imagen_3.png)
+Podemos observar que la imagen se ha construido correctamente utilizando docker images.
+El último paso es construir el contenedor a partir de la imagen anterior sabiendo que el volumen tiene que persistir en la carpeta html que hemos copiado en el documento Dockerfile. Por esto utilizaremos el siguiente comando:
+Docker run –d –p 8080:8080 –v static_content:/usr/share/nginx/html homework
+De esta forma, correremos el contenedor en Segundo plano, en el Puerto 8080, con el volume static_content persistiendo en la carpeta html y todo esto a partir de la imagen homework.
+Si nos dirigimos en el buscador a localhost:8080/index.html, podremos ver el mensaje deseado: (ver imagen_4.png)
